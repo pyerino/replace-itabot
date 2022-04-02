@@ -30,11 +30,10 @@ class PlaceClient:
 
 
         self.json_data = self.get_json_data()
-        # res = requests.get("https://raw.githubusercontent.com/italyplace/rplace/main/coord.txt")
-        # self.pixel_x_start: int = int(res.text.split(" ")[0])
-        # self.pixel_y_start: int = int(res.text.split(" ")[1])
-        self.pixel_x_start: int = 1826
-        self.pixel_y_start: int = 962
+        res = requests.get("https://raw.githubusercontent.com/italyplace/rplace/main/coords.txt")
+        self.pixel_x_start: int = int(res.text.split(" ")[0])
+        self.pixel_y_start: int = int(res.text.split(" ")[1])
+        print(self.pixel_x_start, self.pixel_y_start)
 
         # In seconds
         self.delay_between_launches = (
@@ -105,7 +104,7 @@ class PlaceClient:
     def load_image(self):
         # Read and load the image to draw and get its dimensions
         filepath = os.path.join(os.path.abspath(os.getcwd()),  "temp.bin")
-        res = requests.get("https://raw.githubusercontent.com/italyplace/rplace/main/art.png")
+        res = requests.get("https://raw.githubusercontent.com/italyplace/rplace/main/art.png1")
         file = open(filepath,"wb")
         file.write(res.content)
         file.close()
@@ -439,6 +438,10 @@ class PlaceClient:
 
                     response_data = r.json()
 
+
+
+
+
                     if "error" in response_data:
                         print(
                             f"An error occured. Make sure you have the correct credentials. Response data: {response_data}"
@@ -491,7 +494,7 @@ class PlaceClient:
                     # draw the pixel onto r/place
                     # There's a better way to do this
                     canvas = 0
-                    self.pixel_x_start += current_r
+                    self.pixel_x_start += current_r-1
                     self.pixel_y_start += current_c
                     while self.pixel_x_start > 999:
                         self.pixel_x_start -= 1000
