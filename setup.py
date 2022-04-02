@@ -34,7 +34,7 @@ exec(open('main.py').read())
 process = run()
 
 # verifica ogni minuti
-t_end = time.time() + 60 * 10
+t_end = time.time() + 60 * 5
 while time.time() < t_end:
     url = 'https://raw.githubusercontent.com/italyplace/rplace/main/art.png'
     r = requests.get(url, allow_redirects=True)
