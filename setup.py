@@ -36,7 +36,7 @@ process = run()
 # verifica ogni minuti
 t_end = time.time() + 60 * 10
 while time.time() < t_end:
-    url = 'https://raw.githubusercontent.com/italyplace/rplace/main/art.png1'
+    url = 'https://raw.githubusercontent.com/italyplace/rplace/main/art.png'
     r = requests.get(url, allow_redirects=True)
     open('ntemp.bin', 'wb').write(r.content)
     if not filecmp.cmp('ntemp.bin', 'temp.bin'):
