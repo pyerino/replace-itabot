@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import os.path
 import math
@@ -12,9 +14,8 @@ from io import BytesIO
 from websocket import create_connection
 from requests.auth import HTTPBasicAuth
 from PIL import ImageColor
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 import random
-
 
 from mappings import color_map, name_map
 
@@ -27,9 +28,9 @@ verbose_mode = False
 class PlaceClient:
     def __init__(self):
         # Data
-
-
         self.json_data = self.get_json_data()
+        # self.pixel_x_start: int = self.json_data["image_start_coords"][0]
+        # self.pixel_y_start: int = self.json_data["image_start_coords"][1]
         res = requests.get("https://raw.githubusercontent.com/italyplace/rplace/main/coords.txt")
         self.pixel_x_start: int = int(res.text.split(" ")[0])
         self.pixel_y_start: int = int(res.text.split(" ")[1])
@@ -42,6 +43,12 @@ class PlaceClient:
             else 3
         )
 
+        self.unverified_place_frequency = (
+            self.json_data["unverified_place_frequency"]
+            if self.json_data["unverified_place_frequency"] is not None
+            else False
+        )
+
         # Color palette
         self.rgb_colors_array = self.generate_rgb_colors_array()
 
@@ -52,7 +59,7 @@ class PlaceClient:
         # Image information
         self.pix = None
         self.image_size = None
-
+        self.image_path = os.path.join(os.path.abspath(os.getcwd()),  "temp.bin") #self.json_data["image_path"]
         self.first_run_counter = 0
 
         # Initialize-functions
@@ -73,7 +80,8 @@ class PlaceClient:
     # Find the closest rgb color from palette to a target rgb color
 
     def closest_color(self, target_rgb):
-        r, g, b, p = target_rgb
+        r, g, b = target_rgb
+        print(r, g, b)
         color_diffs = []
         for color in self.rgb_colors_array:
             cr, cg, cb = color
@@ -103,12 +111,13 @@ class PlaceClient:
 
     def load_image(self):
         # Read and load the image to draw and get its dimensions
-        filepath = os.path.join(os.path.abspath(os.getcwd()),  "temp.bin")
-        res = requests.get("https://raw.githubusercontent.com/italyplace/rplace/main/art.png1")
-        file = open(filepath,"wb")
-        file.write(res.content)
-        file.close()
-        im = Image.open(filepath)
+        try:
+            im = Image.open(self.image_path)
+        except FileNotFoundError:
+            logging.fatal("Failed to load image")
+            exit()
+        except UnidentifiedImageError:
+            logging.fatal("File found, but couldn't identify image format")
         self.pix = im.load()
         logging.info(f"Loaded image size: {im.size}")
         self.image_size = im.size
@@ -306,9 +315,8 @@ class PlaceClient:
 
         return new_img
 
-    def get_unset_pixel(self, boardimg, x, y):
+    def get_unset_pixel(self, boardimg, x, y, index):
         pix2 = boardimg.convert("RGB").load()
-        num_loops = 0
         while True:
             x += 1
 
@@ -317,12 +325,15 @@ class PlaceClient:
                 x = 0
 
             if y >= self.image_size[1]:
-                if num_loops > 1:
-                    target_rgb = self.pix[0, 0]
-                    new_rgb = self.closest_color(target_rgb)
-                    return self.pixel_x_start, self.pixel_y_start, new_rgb
-                y = self.pixel_y_start
-                num_loops += 1
+                logging.info(
+                    f"{colorama.Fore.GREEN} All pixels correct, trying again in 10 seconds... {colorama.Style.RESET_ALL}"
+                )
+
+                time.sleep(10)
+
+                boardimg = self.get_board(self.access_tokens[index])
+                pix2 = boardimg.convert("RGB").load()
+                y = 0
 
             logging.debug(f"{x+self.pixel_x_start}, {y+self.pixel_y_start}")
             logging.debug(
@@ -330,7 +341,7 @@ class PlaceClient:
             )
 
             # print(self.pix[x, y])
-            target_rgb = self.pix[x, y]
+            target_rgb = self.pix[x, y][:3]
 
             new_rgb = self.closest_color(target_rgb)
             if pix2[x + self.pixel_x_start, y + self.pixel_y_start] != new_rgb:
@@ -356,7 +367,10 @@ class PlaceClient:
 
             # note: Reddit limits us to place 1 pixel every 5 minutes, so I am setting it to
             # 5 minutes and 30 seconds per pixel
-            pixel_place_frequency = 330
+            if self.unverified_place_frequency:
+                pixel_place_frequency = 1230
+            else:
+                pixel_place_frequency = 330
 
             next_pixel_placement_time = math.floor(time.time()) + pixel_place_frequency
 
@@ -382,7 +396,7 @@ class PlaceClient:
                 current_timestamp = math.floor(time.time())
 
                 # log next time until drawing
-                time_until_next_draw = next_pixel_placement_time - pixel_place_frequency
+                time_until_next_draw = next_pixel_placement_time - current_timestamp
 
                 new_update_str = (
                     f"{time_until_next_draw} seconds until next pixel is drawn"
@@ -438,10 +452,6 @@ class PlaceClient:
 
                     response_data = r.json()
 
-
-
-
-
                     if "error" in response_data:
                         print(
                             f"An error occured. Make sure you have the correct credentials. Response data: {response_data}"
@@ -466,8 +476,7 @@ class PlaceClient:
 
                 # draw pixel onto screen
                 if self.access_tokens.get(index) is not None and (
-                    current_timestamp
-                    >= next_pixel_placement_time + pixel_place_frequency
+                    current_timestamp >= next_pixel_placement_time
                     or self.first_run_counter <= index
                 ):
 
@@ -483,6 +492,7 @@ class PlaceClient:
                         self.get_board(self.access_tokens[index]),
                         current_r,
                         current_c,
+                        index,
                     )
 
                     # get converted color
@@ -494,19 +504,19 @@ class PlaceClient:
                     # draw the pixel onto r/place
                     # There's a better way to do this
                     canvas = 0
-                    self.pixel_x_start += current_r-1
-                    self.pixel_y_start += current_c
-                    while self.pixel_x_start > 999:
-                        self.pixel_x_start -= 1000
+                    pixel_x_start = self.pixel_x_start + current_r
+                    pixel_y_start = self.pixel_y_start + current_c
+                    while pixel_x_start > 999:
+                        pixel_x_start -= 1000
                         canvas += 1
 
                     # draw the pixel onto r/place
                     next_pixel_placement_time = self.set_pixel_and_check_ratelimit(
                         self.access_tokens[index],
-                        self.pixel_x_start,
-                        self.pixel_y_start,
+                        pixel_x_start,
+                        pixel_y_start,
                         pixel_color_index,
-                        canvas
+                        canvas,
                     )
 
                     current_r += 1
