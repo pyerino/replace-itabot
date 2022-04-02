@@ -80,7 +80,6 @@ class PlaceClient:
 
     def closest_color(self, target_rgb):
         r, g, b = target_rgb
-        print(r, g, b)
         color_diffs = []
         for color in self.rgb_colors_array:
             cr, cg, cb = color
