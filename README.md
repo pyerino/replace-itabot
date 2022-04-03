@@ -12,8 +12,10 @@ Inoltre c'è un setup iniziale in cui crea il file di configurazione facendo del
 
 ## Linux
 
-- `apt install python3 python3-pip` - ubuntu
-- `yum install python3 python3-pip` - redhat/centos
+- `apt install python3 python3-pip`     - debian/ubuntu
+- `yum install python3 python3-pip`     - redhat/centos/fedora
+- `pacman -S python3 python3-pip`       - arch/manjaro
+- `xbps-install -S python3 python3-pip` - void 
 
 ## PASSO 2
 
