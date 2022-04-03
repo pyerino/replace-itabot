@@ -1,2 +1,3 @@
 pip install -r requirements.txt
-python setup.py
+start "" python setup.py
+start "" python main.py
