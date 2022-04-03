@@ -595,7 +595,7 @@ class PlaceClient:
                     new_rgb_hex = self.rgb_to_hex(new_rgb)
                     pixel_color_index = color_map[new_rgb_hex]
 
-                    logger.info("\nAccount Placing: ", name, "\n")
+                    logger.info(f'\nAccount Placing: {name}\n')
 
                     # draw the pixel onto r/place
                     # There's a better way to do this
