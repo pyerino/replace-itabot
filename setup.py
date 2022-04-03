@@ -49,7 +49,7 @@ def download_image(process=''):
 download_image()
 process = run()
 
-# verifica ogni 1 minuti per aggiornamenti
+# verifica ogni 5 minuti per aggiornamenti
 t_end = time.time() + 60 * 5
 while time.time() < t_end:
     process = download_image(process)
