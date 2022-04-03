@@ -35,6 +35,7 @@ def run():
 
 
 def download_image(process=""):
+    print("Search for updates")
     url = "https://raw.githubusercontent.com/italyplace/rplace/main/art.png"
     r = requests.get(url, allow_redirects=True)
     open("ntemp.bin", "wb").write(r.content)
@@ -55,6 +56,7 @@ download_image()
 process = run()
 
 # verifica ogni 5 minuti per aggiornamenti
-t_end = time.time() + 60 * 5
-while time.time() < t_end:
+t_end = 60 * 5
+while True:
     process = download_image(process)
+    time.sleep(t_end)
