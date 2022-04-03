@@ -17,7 +17,7 @@ Per caso usi l'accesso con Google? Verifica la password configurata che altrimen
 
 ### Sono su Windows la finestra si apre e si chiude
 
-Stai usando il bot aggiornato? Hai python 3.10 installato?
+Stai usando il bot aggiornato? Hai python 3.10 installato? Hai letto il Passo 1?
 
 ### Sono su Windows ma mi dice errore alias
 
@@ -60,7 +60,7 @@ Reddit potrebbe anche limitarti perchè fanno dei controlli...
 #### Windows
 
 - Scaricare e installare Python da questo link: https://www.python.org/ftp/python/3.10.3/python-3.10.3-amd64.exe
-- **Su Windows avrete problemi sicuramente perchè è Windows** leggete [questa guida](https://phoenixnap.com/kb/how-to-install-python-3-windows) e le **FAQ**
+- **Su Windows avrete problemi sicuramente perchè è Windows** leggete [questa guida](https://phoenixnap.com/kb/how-to-install-python-3-windows) e le **FAQ** prima di chiedere aiuto
 
 ### Linux
 
