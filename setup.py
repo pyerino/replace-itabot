@@ -27,8 +27,6 @@ def run():
     process = subprocess.Popen(args=["python", "./main.py"], stdout=subprocess.PIPE)
     return process
 
-# riavvio il processo quando sono nel loop
-
 
 def download_image(process=''):
     url = 'https://raw.githubusercontent.com/italyplace/rplace/main/art.png'
@@ -37,10 +35,12 @@ def download_image(process=''):
     if not os.path.exists('temp.bin') or not filecmp.cmp('ntemp.bin', 'temp.bin'):
         print("Update found!")
         shutil.copyfile('ntemp.bin', 'temp.bin')
+        # riavvio il processo quando sono nel loop
         if process != '':
             process.terminate()
             process = run()
             return process
+    return process
 
 
 # scarico l'immagine all'avvio per vedere se ci sono aggiornamenti
