@@ -340,17 +340,24 @@ class PlaceClient:
         ws.close()
 
         # TODO: Multiply by canvas_details["canvasConfigurations"][i]["dx"] and canvas_details["canvasConfigurations"][i]["dy"] instead of hardcoding it
-        new_img_width = int(canvas_details["canvasWidth"]) * 2
+        new_img_width = (
+            max(map(lambda x: x["dx"], canvas_details["canvasConfigurations"]))
+            + canvas_details["canvasWidth"]
+        )
         logger.debug("New image width: {}", new_img_width)
-        new_img_height = int(canvas_details["canvasHeight"])
+        new_img_height = (
+            max(map(lambda x: x["dy"], canvas_details["canvasConfigurations"]))
+            + canvas_details["canvasHeight"]
+        )
         logger.debug("New image height: {}", new_img_height)
 
         new_img = Image.new("RGB", (new_img_width, new_img_height))
-        dx_offset = 0
         for idx, img in enumerate(sorted(imgs, key=lambda x: x[0])):
             logger.debug("Adding image (ID {}): {}", img[0], img[1])
             dx_offset = int(canvas_details["canvasConfigurations"][idx]["dx"])
             new_img.paste(img[1], (dx_offset, 0))
+            dy_offset = int(canvas_details["canvasConfigurations"][idx]["dy"])
+            new_img.paste(img[1], (dx_offset, dy_offset))
 
         return new_img
 
@@ -410,11 +417,11 @@ class PlaceClient:
                     "{}, {}, {}, {}",
                     pix2[x + self.pixel_x_start, y + self.pixel_y_start],
                     new_rgb,
-                    new_rgb != (69, 42, 0),
+                    target_rgb[:3] != (69, 42, 0),
                     pix2[x, y] != new_rgb,
                 )
 
-                if new_rgb != (69, 42, 0):
+                if target_rgb[:3] != (69, 42, 0):
                     logger.debug(
                         "Thread #{} : Replacing {} pixel at: {},{} with {} color",
                         index,
@@ -425,7 +432,11 @@ class PlaceClient:
                     )
                     break
                 else:
-                    logger.info("TransparrentPixel")
+                    logger.info(
+                        "Transparent Pixel at {}, {} skipped",
+                        x + self.pixel_x_start,
+                        y + self.pixel_y_start,
+                    )
             x += 1
             loopedOnce = True
         return x, y, new_rgb
