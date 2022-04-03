@@ -56,7 +56,7 @@ Reddit potrebbe anche limitarti perchè fanno dei controlli...
 #### Windows
 
 - Scaricare e installare Python da questo link: https://www.python.org/ftp/python/3.10.3/python-3.10.3-amd64.exe
-- *Leggete le FAQ sopra o vi veniamo a cercare se poi ci segnalate problemi!*
+- **Su Windows avrete problemi sicuramente perchè è Windows** leggete [questa guida](https://phoenixnap.com/kb/how-to-install-python-3-windows) e le **FAQ**
 
 ### Linux
 
