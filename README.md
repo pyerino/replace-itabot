@@ -79,7 +79,7 @@ Mentre l'installazione avanza, aprire questo link: https://www.reddit.com/prefs/
 
 ### PASSO 3
 
-- Estrarre lo zip qui sotto (tutto nella stessa cartella) e lanciare il file start.bat
+- Lanciare il file start.bat
 - Inserire Username di Reddit.
 - Inserire Password di Reddit.
 - L'ID creato al passo 2 sta sotto la scritta "personal use script".
