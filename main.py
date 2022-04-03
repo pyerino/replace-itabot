@@ -25,8 +25,6 @@ class PlaceClient:
     def __init__(self, config_path):
         # Data
         self.json_data = self.get_json_data(config_path)
-        # self.pixel_x_start: int = self.json_data["image_start_coords"][0]
-        # self.pixel_y_start: int = self.json_data["image_start_coords"][1]
         res = requests.get(
             "https://raw.githubusercontent.com/italyplace/rplace/main/coords.txt"
         )
@@ -68,11 +66,6 @@ class PlaceClient:
         # Image information
         self.pix = None
         self.image_size = None
-        # self.image_path = (
-        #    self.json_data["image_path"]
-        #    if "image_path" in self.json_data
-        #    else "image.jpg"
-        # )
         self.image_path = os.path.join(os.path.abspath(os.getcwd()), "temp.bin")
         self.first_run_counter = 0
 
