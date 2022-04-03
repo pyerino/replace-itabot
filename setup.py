@@ -7,15 +7,17 @@ import time
 import json
 
 if os.path.exists("config.json") == False:
-    username=input("Username di Reddit: ")
-    password=input("Password di Reddit: ")
-    client_ID=input("ID creato al passo 2: ")
-    client_secret=input("Secret creato al passo 2: ")
-    f=open("config.json","a")
-    config = []
+    username = input("Username di Reddit: ")
+    password = input("Password di Reddit: ")
+    client_ID = input("ID creato al passo 2: ")
+    client_secret = input("Secret creato al passo 2: ")
+    f = open("config.json", "a")
+    config = {}
     config['thread_delay'] = 2
-    config['unverified_place_frequency'] = false
-    config['workers'][username] = ['password':password,'client_id':client_ID,'client_secret':client_secret,'start_coords':[0,0]]
+    config['unverified_place_frequency'] = False
+    config['workers'] = {}
+    config['workers'][username] = {
+        'password': password, 'client_id': client_ID, 'client_secret': client_secret, 'start_coords': [0, 0]}
     json.dump(config, f)
     f.close()
 
@@ -26,7 +28,9 @@ def run():
     return process
 
 # riavvio il processo quando sono nel loop
-def download_image(process == ''):    
+
+
+def download_image(process=''):
     url = 'https://raw.githubusercontent.com/italyplace/rplace/main/art.png'
     r = requests.get(url, allow_redirects=True)
     open('ntemp.bin', 'wb').write(r.content)
@@ -37,6 +41,7 @@ def download_image(process == ''):
             process.terminate()
             process = run()
             return process
+
 
 # scarico l'immagine all'avvio per vedere se ci sono aggiornamenti
 download_image()
