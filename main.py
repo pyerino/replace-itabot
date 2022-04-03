@@ -148,8 +148,8 @@ class PlaceClient:
             "Thread #{} : Attempting to place {} pixel at {}, {}",
             thread_index,
             ColorMapper.color_id_to_name(color_index_in),
-            x + (1000 * canvas_index),
-            y,
+            x + (1000 * (canvas_index % 2)),
+            y + (1000 * (canvas_index // 2)),
         )
 
         url = "https://gql-realtime-2.reddit.com/query"
@@ -634,6 +634,9 @@ class PlaceClient:
                     while pixel_x_start > 999:
                         pixel_x_start -= 1000
                         canvas += 1
+                    while pixel_y_start > 999:
+                        pixel_y_start -= 1000
+                        canvas += 2
 
                     # draw the pixel onto r/place
                     next_pixel_placement_time = self.set_pixel_and_check_ratelimit(
