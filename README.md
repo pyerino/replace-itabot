@@ -3,6 +3,16 @@
 Il bot scarica in automatico le coordinate all'avvio e l'immagine con un controllo ogni 5 minuti (che riavvia il bot).  
 Inoltre c'è un setup iniziale in cui crea il file di configurazione facendo delle domande al primo avvio.
 
+
+## Account multipli
+
+Se volete usare più di un account potete modificare il file config.json **dopo il primo avvio** e seguire le istruzioni che trovate su https://github.com/rdeepak2002/reddit-place-script-2022.  
+
+## Come mette i pixel
+
+C'è un parametro che permette di configurare nel file di configurazione da dove deve controllare i pixel, parte di base da `0,0` e poi ogni volta verifica se per strada incontra pixel sbaglaiti e corregge.  
+Con il link sopra trovate maggiori informazioni, suggerisce negli account multipli di far controlalre seizioni diverse.
+
 ## PASSO 1
 
 ### Windows
@@ -11,6 +21,8 @@ Inoltre c'è un setup iniziale in cui crea il file di configurazione facendo del
 - Scaricare questo progetto da pulsante verde in alto a destra, poi Download Zip e estraete il contenuto. Per eventuali aggiornamenti del bot (non dell'overlay) questo passaggio andrà ripetutto
 
 ## Linux
+
+Minimo Python 3.9!
 
 - `apt install python3 python3-pip`     - debian/ubuntu
 - `yum install python3 python3-pip`     - redhat/centos/fedora
@@ -45,6 +57,3 @@ Cliccate su `start.bat` vi apre una finestra da lasciare aperta
 
 Da terminale lanciate `start.sh`, per chi vuole c'è il Dockerfile già pronto.
 
-## Account multipli
-
-Se volete usare più di un account potete modificare il file config.json *dopo il primo avvio* e seguire le istruzioni che trovate su https://github.com/rdeepak2002/reddit-place-script-2022.  
