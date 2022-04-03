@@ -1,4 +1,4 @@
-##GUIDA PER I VOLONTARI BOT ITALIA
+#GUIDA PER I VOLONTARI BOT ITALIA
 
 ##PASSO 1
 ~ Scaricare e installare Python da questo link: https://www.python.org/ftp/python/3.10.3/python-3.10.3-amd64.exe
