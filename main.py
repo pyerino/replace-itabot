@@ -189,6 +189,7 @@ class PlaceClient:
         # If we don't get data, it means we've been rate limited.
         # If we do, a pixel has been successfully placed.
         if response.json()["data"] is None:
+            logger.debug(response.json().get("errors"))
             waitTime = math.floor(
                 response.json()["errors"][0]["extensions"]["nextAvailablePixelTs"]
             )
@@ -357,7 +358,6 @@ class PlaceClient:
         for idx, img in enumerate(sorted(imgs, key=lambda x: x[0])):
             logger.debug("Adding image (ID {}): {}", img[0], img[1])
             dx_offset = int(canvas_details["canvasConfigurations"][idx]["dx"])
-            new_img.paste(img[1], (dx_offset, 0))
             dy_offset = int(canvas_details["canvasConfigurations"][idx]["dy"])
             new_img.paste(img[1], (dx_offset, dy_offset))
 
@@ -419,11 +419,11 @@ class PlaceClient:
                     "{}, {}, {}, {}",
                     pix2[x + self.pixel_x_start, y + self.pixel_y_start],
                     new_rgb,
-                    target_rgb[:3] != (69, 42, 0),
+                    target_rgb[:3] != (69, 42, 0) and new_rgb != (69, 42, 0),
                     pix2[x, y] != new_rgb,
                 )
 
-                if target_rgb[:3] != (69, 42, 0):
+                if target_rgb[:3] != (69, 42, 0) and new_rgb != (69, 42, 0):
                     logger.debug(
                         "Thread #{} : Replacing {} pixel at: {},{} with {} color",
                         index,
