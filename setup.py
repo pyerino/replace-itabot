@@ -35,7 +35,7 @@ def run():
 
 
 def download_image(process=""):
-    print("Search for updates")
+    print("Search for image updates")
     url = "https://raw.githubusercontent.com/italyplace/rplace/main/art.png"
     r = requests.get(url, allow_redirects=True)
     open("ntemp.bin", "wb").write(r.content)
