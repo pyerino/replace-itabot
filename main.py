@@ -79,7 +79,7 @@ class PlaceClient:
         self.waiting_thread_index = -1
 
     """ Utils """
-    
+
     def get_proxies_text(self):
         pathproxies = os.path.join(os.getcwd(), "proxies.txt")
         f = open(pathproxies)
@@ -89,7 +89,7 @@ class PlaceClient:
         self.proxies = []
         for i in proxieslist:
             self.proxies.append({"https": i, "http": i})
-            
+
     def GetProxies(self, proxies):
         proxieslist = []
         for i in proxies:
