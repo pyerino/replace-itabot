@@ -79,4 +79,8 @@ Cliccate su `start.bat` vi apre una finestra da lasciare aperta
 
 #### Linux
 
-Da terminale lanciate `start.sh`, per chi vuole c'è il Dockerfile già pronto.
+Da terminale lanciate `start.sh`, per chi vuole c'è il Dockerfile già pronto (con questo comando evitiamo che muoia). 
+
+```
+docker run place-bot --restart unless-stopped
+```
