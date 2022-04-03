@@ -29,7 +29,7 @@ if os.path.exists("config.json") == False:
 def run():
     print("Script launched")
     process = subprocess.Popen(
-        args=["python", "./main.py", "--verbose"], stdout=subprocess.PIPE, shell=False
+        args=["python", "./main.py", "--debug"], stdout=subprocess.PIPE, shell=False
     )
     return process
 
