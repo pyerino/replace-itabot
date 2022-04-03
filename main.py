@@ -26,11 +26,13 @@ verbose_mode = False
 
 class PlaceClient:
     def __init__(self):
+        print("Italy!")
         # Data
         self.json_data = self.get_json_data()
         # self.pixel_x_start: int = self.json_data["image_start_coords"][0]
         # self.pixel_y_start: int = self.json_data["image_start_coords"][1]
-        res = requests.get("https://raw.githubusercontent.com/italyplace/rplace/main/coords.txt")
+        res = requests.get(
+            "https://raw.githubusercontent.com/italyplace/rplace/main/coords.txt")
         self.pixel_x_start: int = int(res.text.split(" ")[0])
         self.pixel_y_start: int = int(res.text.split(" ")[1])
         print(self.pixel_x_start, self.pixel_y_start)
@@ -58,7 +60,8 @@ class PlaceClient:
         # Image information
         self.pix = None
         self.image_size = None
-        self.image_path = os.path.join(os.path.abspath(os.getcwd()),  "temp.bin") #self.json_data["image_path"]
+        self.image_path = os.path.join(os.path.abspath(
+            os.getcwd()), "temp.bin")  # self.json_data["image_path"]
         self.first_run_counter = 0
 
         # Initialize-functions
@@ -407,15 +410,14 @@ class PlaceClient:
                 # refresh access token if necessary
                 # print("TEST:", self.access_token_expires_at_timestamp, "INDEX:", index)
                 if (
-                    len(self.access_tokens) == 0
-                    or len(self.access_token_expires_at_timestamp) == 0
-                    or
+                    len(self.access_tokens) == 0 or
+                    len(self.access_token_expires_at_timestamp) == 0 or
                     # index in self.access_tokens
-                    index not in self.access_token_expires_at_timestamp
-                    or (
+                    index not in self.access_token_expires_at_timestamp or
+                    (
+                        self.access_token_expires_at_timestamp.get(index) and
+                        current_timestamp >=
                         self.access_token_expires_at_timestamp.get(index)
-                        and current_timestamp
-                        >= self.access_token_expires_at_timestamp.get(index)
                     )
                 ):
                     logging.info(f"Thread #{index} :: Refreshing access token")
@@ -474,8 +476,8 @@ class PlaceClient:
 
                 # draw pixel onto screen
                 if self.access_tokens.get(index) is not None and (
-                    current_timestamp >= next_pixel_placement_time
-                    or self.first_run_counter <= index
+                    current_timestamp >= next_pixel_placement_time or
+                    self.first_run_counter <= index
                 ):
 
                     # place pixel immediately
@@ -543,6 +545,7 @@ class PlaceClient:
 
 
 if __name__ == "__main__":
+    print("Italy!")
     parser = argparse.ArgumentParser()
     colorama.init()
     parser.add_argument(
