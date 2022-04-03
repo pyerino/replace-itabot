@@ -19,6 +19,7 @@ Stai usando il bot aggiornato? Hai python 3.10 installato?
 ### Sono su Windows ma mi dice errore alias
 
 Noi usiamo il comando `python` probabilmente hai `python3` quindi vedi di aggiungere un alias.
+Windows 11, su App --> App e funzionalità --> Altre impostazioni --> Alias di esecuzione App --> Togli la spunta da programma di installazione app (python.exe), ce ne sono 2.
 
 ### Perchè devo aspettare 20 minuti?
 
@@ -31,8 +32,8 @@ Cn gli account multipli è il caso di usare dei proxy se vi blocca, guardate il 
 
 ### Come mette i pixel
 
-C'è un parametro che permette di configurare nel file di configurazione da dove deve controllare i pixel, parte di base da `0,0` e poi ogni volta verifica se per strada incontra pixel sbaglaiti e corregge.  
-Con il link sopra trovate maggiori informazioni, suggerisce negli account multipli di far controlalre seizioni diverse.
+C'è un parametro che permette di configurare nel file di configurazione da dove deve controllare i pixel, parte di base da `0,0` e poi ogni volta verifica se per strada incontra pixel sbagliati e corregge.  
+Con il link sopra trovate maggiori informazioni, suggerisce negli account multipli di far controlalre sezioni diverse.
 
 ### Per chi ha la 2FA
 
