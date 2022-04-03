@@ -26,7 +26,7 @@ verbose_mode = False
 
 class PlaceClient:
     def __init__(self):
-        print("Italy!")
+        logging.info("Italy!")
         # Data
         self.json_data = self.get_json_data()
         # self.pixel_x_start: int = self.json_data["image_start_coords"][0]
@@ -35,7 +35,7 @@ class PlaceClient:
             "https://raw.githubusercontent.com/italyplace/rplace/main/coords.txt")
         self.pixel_x_start: int = int(res.text.split(" ")[0])
         self.pixel_y_start: int = int(res.text.split(" ")[1])
-        print(self.pixel_x_start, self.pixel_y_start)
+        logging.info(self.pixel_x_start, self.pixel_y_start)
 
         # In seconds
         self.delay_between_launches = (
@@ -285,7 +285,7 @@ class PlaceClient:
             file = ""
             while True:
                 temp = json.loads(ws.recv())
-                # print("\n",temp)
+                # logging.info("\n",temp)
                 if temp["type"] == "data":
                     msg = temp["payload"]["data"]["subscribe"]
                     if msg["data"]["__typename"] == "FullFrameMessageData":
@@ -312,7 +312,7 @@ class PlaceClient:
             new_img.paste(img, (x_offset, 0))
             x_offset += img.size[0]
 
-        print("Got image:", file)
+        logging.info("Got image:", file)
 
         return new_img
 
@@ -341,7 +341,7 @@ class PlaceClient:
                 f"{x}, {y}, boardimg, {self.image_size[0]}, {self.image_size[1]}"
             )
 
-            # print(self.pix[x, y])
+            # logging.info(self.pix[x, y])
             target_rgb = self.pix[x, y][:3]
 
             new_rgb = self.closest_color(target_rgb)
@@ -355,7 +355,7 @@ class PlaceClient:
                     )
                     break
                 else:
-                    print("TransparrentPixel")
+                    logging.info("TransparrentPixel")
         return x, y, new_rgb
 
     # Draw the input image
@@ -380,7 +380,7 @@ class PlaceClient:
                 current_r = worker["start_coords"][0]
                 current_c = worker["start_coords"][1]
             except Exception:
-                print(
+                logging.info(
                     f"You need to provide start_coords to worker '{name}'",
                 )
                 exit(1)
@@ -408,7 +408,7 @@ class PlaceClient:
                 logging.info(f"Thread #{index} :: {update_str}")
 
                 # refresh access token if necessary
-                # print("TEST:", self.access_token_expires_at_timestamp, "INDEX:", index)
+                # logging.info("TEST:", self.access_token_expires_at_timestamp, "INDEX:", index)
                 if (
                     len(self.access_tokens) == 0 or
                     len(self.access_token_expires_at_timestamp) == 0 or
@@ -430,7 +430,7 @@ class PlaceClient:
                         app_client_id = worker["client_id"]
                         secret_key = worker["client_secret"]
                     except Exception:
-                        print(
+                        logging.info(
                             f"You need to provide all required fields to worker '{name}'",
                         )
                         exit(1)
@@ -453,7 +453,7 @@ class PlaceClient:
                     response_data = r.json()
 
                     if "error" in response_data:
-                        print(
+                        logging.info(
                             f"An error occured. Make sure you have the correct credentials. Response data: {response_data}"
                         )
                         exit(1)
@@ -499,7 +499,7 @@ class PlaceClient:
                     new_rgb_hex = self.rgb_to_hex(new_rgb)
                     pixel_color_index = color_map[new_rgb_hex]
 
-                    print("\nAccount Placing: ", name, "\n")
+                    logging.info("\nAccount Placing: ", name, "\n")
 
                     # draw the pixel onto r/place
                     # There's a better way to do this
@@ -545,7 +545,7 @@ class PlaceClient:
 
 
 if __name__ == "__main__":
-    print("Italy!")
+    logging.info("Italy!")
     parser = argparse.ArgumentParser()
     colorama.init()
     parser.add_argument(
