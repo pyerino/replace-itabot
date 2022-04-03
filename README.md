@@ -15,21 +15,21 @@
 
 Mentre l'installazione avanza, aprire questo link: https://www.reddit.com/prefs/apps
 
-~ Cliccare su are you a developer? create an app...
-~ Inserire ciò che si vuole in name e description.
-~ Selezionare il bottone SCRIPT (non web/app)
-~ Inserire http://google.com/ su redirect uri.
-~ Potete lasciare bianco l'altro link.
-~ Cliccare su create app.
-~ TENERE APERTA QUESTA PAGINA PER IL PASSO 3!!!
+- Cliccare su are you a developer? create an app...
+- Inserire ciò che si vuole in name e description.
+- Selezionare il bottone SCRIPT (non web/app)
+- Inserire http://google.com/ su redirect uri.
+- Potete lasciare bianco l'altro link.
+- Cliccare su create app.
+- TENERE APERTA QUESTA PAGINA PER IL PASSO 3!!!
 
 ## PASSO 3
 
-~ Estrarre lo zip qui sotto (tutto nella stessa cartella) e lanciare il file start.bat
-~ Inserire Username di Reddit.
-~ Inserire Password di Reddit.
-~ L'ID creato al passo 2 sta sotto la scritta "personal use script".
-~ Il Secret creato al passo 2 sta a sinistra della scritta "secret".
+- Estrarre lo zip qui sotto (tutto nella stessa cartella) e lanciare il file start.bat
+- Inserire Username di Reddit.
+- Inserire Password di Reddit.
+- L'ID creato al passo 2 sta sotto la scritta "personal use script".
+- Il Secret creato al passo 2 sta a sinistra della scritta "secret".
 
 ### Windows
 
