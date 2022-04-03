@@ -51,10 +51,12 @@ Reddit potrebbe anche limitarti perchè fanno dei controlli...
 
 ### PASSO 1
 
+- Scaricare questo progetto da pulsante verde in alto a destra, poi Download Zip e estraete il contenuto. Per eventuali aggiornamenti del bot (non dell'overlay) questo passaggio andrà ripetuto.
+
 #### Windows
 
 - Scaricare e installare Python da questo link: https://www.python.org/ftp/python/3.10.3/python-3.10.3-amd64.exe
-- Scaricare questo progetto da pulsante verde in alto a destra, poi Download Zip e estraete il contenuto. Per eventuali aggiornamenti del bot (non dell'overlay) questo passaggio andrà ripetutto
+- *Leggete le FAQ sopra o vi veniamo a cercare se poi ci segnalate problemi!*
 
 ### Linux
 
