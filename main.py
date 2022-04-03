@@ -322,7 +322,7 @@ class PlaceClient:
                                 img_id,
                                 Image.open(
                                     BytesIO(
-                                        requests.get(                                            
+                                        requests.get(
                                             msg["data"]["name"],
                                             stream=True,
                                             proxies=self.GetRandomProxy(),
