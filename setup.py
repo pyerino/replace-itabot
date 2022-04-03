@@ -24,7 +24,7 @@ if os.path.exists("config.json") == False:
 
 def run():
     print("Script launched")
-    process = subprocess.Popen(args=["python", "./main.py"], stdout=subprocess.PIPE)
+    process = subprocess.Popen(args=["python", "./main.py"], stdout=subprocess.PIPE, shell=False)
     return process
 
 
@@ -38,6 +38,7 @@ def download_image(process=''):
         # riavvio il processo quando sono nel loop
         if process != '':
             process.terminate()
+            process.wait()
             process = run()
             return process
     return process
