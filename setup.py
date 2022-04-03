@@ -13,11 +13,15 @@ if os.path.exists("config.json") == False:
     client_secret = input("Secret creato al passo 2: ")
     f = open("config.json", "a")
     config = {}
-    config['thread_delay'] = 2
-    config['unverified_place_frequency'] = False
-    config['workers'] = {}
-    config['workers'][username] = {
-        'password': password, 'client_id': client_ID, 'client_secret': client_secret, 'start_coords': [0, 0]}
+    config["thread_delay"] = 2
+    config["unverified_place_frequency"] = False
+    config["workers"] = {}
+    config["workers"][username] = {
+        "password": password,
+        "client_id": client_ID,
+        "client_secret": client_secret,
+        "start_coords": [0, 0],
+    }
     json.dump(config, f)
     f.close()
 
@@ -25,19 +29,20 @@ if os.path.exists("config.json") == False:
 def run():
     print("Script launched")
     process = subprocess.Popen(
-        args=["python", "./main.py", "--verbose"], stdout=subprocess.PIPE, shell=False)
+        args=["python", "./main.py", "--verbose"], stdout=subprocess.PIPE, shell=False
+    )
     return process
 
 
-def download_image(process=''):
-    url = 'https://raw.githubusercontent.com/italyplace/rplace/main/art.png'
+def download_image(process=""):
+    url = "https://raw.githubusercontent.com/italyplace/rplace/main/art.png"
     r = requests.get(url, allow_redirects=True)
-    open('ntemp.bin', 'wb').write(r.content)
-    if not os.path.exists('temp.bin') or not filecmp.cmp('ntemp.bin', 'temp.bin'):
+    open("ntemp.bin", "wb").write(r.content)
+    if not os.path.exists("temp.bin") or not filecmp.cmp("ntemp.bin", "temp.bin"):
         print("Update found!")
-        shutil.copyfile('ntemp.bin', 'temp.bin')
+        shutil.copyfile("ntemp.bin", "temp.bin")
         # riavvio il processo quando sono nel loop
-        if process != '':
+        if process != "":
             process.terminate()
             process.wait()
             process = run()
