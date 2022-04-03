@@ -3,11 +3,21 @@
 Il bot scarica in automatico le coordinate all'avvio e l'immagine con un controllo ogni 5 minuti (che riavvia il bot).  
 Inoltre c'è un setup iniziale in cui crea il file di configurazione facendo delle domande al primo avvio.
 
+**Il bot inteso come programma si aggiorna riscaricando lo zip, verificate di avere l'ultima versione se avete problemi!**
+
 ## FAQ
 
 ### Mi si è piantato su `main:set_pixel_and_check_ratelimit:220`
 
 Il bot è partito stai tranquillo, succede ad alcuni e stiamo cercando di capire ma per noi il bot funziona (verifica di usare l'ultima versione).
+
+### Sono su Windows la finestra si apre e si chiude
+
+Stai usando il bot aggiornato? Hai python 3.10 installato?
+
+### Sono su Windows ma mi dice errore alias
+
+Noi usiamo il comando `python` probabilmente hai `python3` quindi vedi di aggiungere un alias.
 
 ### Account multipli
 
@@ -30,10 +40,6 @@ Dovete vedere l'username che usate e impostare una password dentro Reddit!
 ### Mi dice Rate limit
 
 Normale, il bot ha bisogno di tempo e il browser non si aggiorna in tempo reale al millisecondo. Lasciatelo stare, al limite riavviatelo.
-
-### Sono su Windows ma mi dice errore alias
-
-Noi usiamo il comando `python` probabilmente hai `python3` quindi vedi di aggiungere un alias.
 
 ## Installare
 
