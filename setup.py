@@ -4,6 +4,7 @@ import filecmp
 import shutil
 import subprocess
 import time
+import json
 
 if os.path.exists("config.json") == False:
     username=input("Username di Reddit: ")
@@ -11,17 +12,11 @@ if os.path.exists("config.json") == False:
     client_ID=input("ID creato al passo 2: ")
     client_secret=input("Secret creato al passo 2: ")
     f=open("config.json","a")
-    f.write('{"thread_delay": 2,"unverified_place_frequency": false,"workers": {"')
-    f.write(username)
-    f.write(' ": {"password": "')
-    f.write(password)
-    f.write('","client_id": "')
-    f.write(client_ID)
-    f.write('","client_secret": "')
-    f.write(client_secret)
-    f.write('","start_coords":')
-    f.write('[0, 0]')
-    f.write('}}}')
+    config = []
+    config['thread_delay'] = 2
+    config['unverified_place_frequency'] = false
+    config['workers'][username] = ['password':password,'client_id':client_ID,'client_secret':client_secret,'start_coords':[0,0]]
+    json.dump(config, f)
     f.close()
 
 
@@ -30,18 +25,24 @@ def run():
     process = subprocess.Popen(args=["python", "./main.py"], stdout=subprocess.PIPE)
     return process
 
-exec(open('main.py').read())
-process = run()
-
-# verifica ogni minuti
-t_end = time.time() + 60 * 5
-while time.time() < t_end:
+# riavvio il processo quando sono nel loop
+def download_image(process == ''):    
     url = 'https://raw.githubusercontent.com/italyplace/rplace/main/art.png'
     r = requests.get(url, allow_redirects=True)
     open('ntemp.bin', 'wb').write(r.content)
     if not filecmp.cmp('ntemp.bin', 'temp.bin'):
         print("Update found!")
         shutil.copyfile('ntemp.bin', 'temp.bin')
-        process.terminate()
-        process = run()
+        if process != '':
+            process.terminate()
+            process = run()
+            return process
 
+# scarico l'immagine all'avvio per vedere se ci sono aggiornamenti
+download_image()
+process = run()
+
+# verifica ogni 5 minuti per aggiornamenti
+t_end = time.time() + 60 * 5
+while time.time() < t_end:
+    process = download_image(process)
