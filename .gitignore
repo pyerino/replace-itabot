@@ -156,3 +156,5 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 temp.png
+temp.bin
+ntemp.bin

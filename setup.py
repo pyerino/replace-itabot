@@ -34,7 +34,7 @@ def download_image(process=''):
     url = 'https://raw.githubusercontent.com/italyplace/rplace/main/art.png'
     r = requests.get(url, allow_redirects=True)
     open('ntemp.bin', 'wb').write(r.content)
-    if not filecmp.cmp('ntemp.bin', 'temp.bin'):
+    if not os.path.exists('temp.bin') or not filecmp.cmp('ntemp.bin', 'temp.bin'):
         print("Update found!")
         shutil.copyfile('ntemp.bin', 'temp.bin')
         if process != '':
