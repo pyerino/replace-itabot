@@ -7,10 +7,9 @@ Inoltre c'è un setup iniziale in cui crea il file di configurazione facendo del
 
 ## FAQ
 
-### Mi si è piantato su `main:set_pixel_and_check_ratelimit:220`
+### Mi si è piantato su `main:set_pixel_and_check_ratelimit:220` o su `Loaded image size`
 
-Il bot è partito stai tranquillo, succede ad alcuni e stiamo cercando di capire ma per noi il bot funziona (verifica di usare l'ultima versione).  
-Per caso usi l'accesso con google? Verifica la password configurata che altrimenti non si collega.
+Per caso usi l'accesso con Google? Verifica la password configurata che altrimenti non si collega.
 
 ### Sono su Windows la finestra si apre e si chiude
 
