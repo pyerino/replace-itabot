@@ -24,7 +24,8 @@ if os.path.exists("config.json") == False:
 
 def run():
     print("Script launched")
-    process = subprocess.Popen(args=["python", "./main.py", "--verbose"], stdout=subprocess.PIPE, shell=False)
+    process = subprocess.Popen(
+        args=["python", "./main.py", "--verbose"], stdout=subprocess.PIPE, shell=False)
     return process
 
 
@@ -48,7 +49,7 @@ def download_image(process=''):
 download_image()
 process = run()
 
-# verifica ogni 5 minuti per aggiornamenti
+# verifica ogni 1 minuti per aggiornamenti
 t_end = time.time() + 60 * 5
 while time.time() < t_end:
     process = download_image(process)
