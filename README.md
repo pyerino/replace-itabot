@@ -1,10 +1,14 @@
 # GUIDA PER I VOLONTARI BOT ITALIA
 
+Il bot scarica in automatico le coordinate all'avvio e l'immagine con un controllo ogni 5 minuti (che riavvia il bot).  
+Inoltre c'è un setup iniziale in cui crea il file di configurazione facendo delle domande al primo avvio.
+
 ## PASSO 1
 
 ### Windows
 
-~ Scaricare e installare Python da questo link: https://www.python.org/ftp/python/3.10.3/python-3.10.3-amd64.exe
+- Scaricare e installare Python da questo link: https://www.python.org/ftp/python/3.10.3/python-3.10.3-amd64.exe
+- Scaricare questo progetto da pulsante verde in alto a destra, poi Download Zip e estraete il contenuto. Per eventuali aggiornamenti del bot (non dell'overlay) questo passaggio andrà ripetutto
 
 ## Linux
 
@@ -38,3 +42,7 @@ Cliccate su `start.bat` vi apre una finestra da lasciare aperta
 ### Linux
 
 Da terminale lanciate `start.sh`, per chi vuole c'è il Dockerfile già pronto.
+
+## Account multipli
+
+Se volete usare più di un account potete modificare il file config.json *dopo il primo avvio* e seguire le istruzioni che trovate su https://github.com/rdeepak2002/reddit-place-script-2022.  
