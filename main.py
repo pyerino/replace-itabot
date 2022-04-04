@@ -179,7 +179,7 @@ class PlaceClient:
         }
 
         response = requests.request(
-            "POST", url, headers=headers, data=payload, proxies=self.GetRandomProxy()
+            "POST", url, headers=headers, data=payload, proxies=self.GetRandomProxy(self)
         )
         logger.debug("Thread #{} : Received response: {}", thread_index, response.text)
 
@@ -326,7 +326,7 @@ class PlaceClient:
                                         requests.get(
                                             msg["data"]["name"],
                                             stream=True,
-                                            proxies=self.GetRandomProxy(),
+                                            proxies=self.GetRandomProxy(self),
                                         ).content
                                     )
                                 ),
@@ -531,6 +531,7 @@ class PlaceClient:
                     while True:
                         try:
                             client = requests.Session()
+                            client.proxies = self.GetRandomProxy(self)
                             client.headers.update(
                                 {
                                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36"
@@ -551,7 +552,7 @@ class PlaceClient:
                             r = client.post(
                                 "https://www.reddit.com/login",
                                 data=data,
-                                proxies=self.GetRandomProxy(),
+                                proxies=self.GetRandomProxy(self),
                             )
                             break
                         except Exception:

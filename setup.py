@@ -47,7 +47,12 @@ def download_image(process=""):
             process.terminate()
             process.wait()
             process = run()
-            return process
+    # Se Reddit schiatta, anche il bot bot schiatta controlliamo se il processo è vivo
+    if not isinstance(process, str) and process.poll() is not None:
+        process.terminate()
+        process.wait()
+        process = run()
+
     return process
 
 
