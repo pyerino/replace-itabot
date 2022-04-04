@@ -8,7 +8,7 @@ La cartella bot-generator con tutti i file va **dentro** la cartella del bot
  1. Assicurarsi di essere sloggati da reddit e di avere Chrome installato
  2. Eseguire start.bat
  3. Andare su https://10minutesemail.net/
- 4. Copiare l'indirizzo email che spunta sulla pagina. NON CHIUDERE LA PAGINA!
+ 4. Copiare l'indirizzo email che spunta sulla pagina. NON CHIUDERE LA PAGINA (ASPETTA 10 MINUTI)!
  5. Apparirà una finestra che chiede di inserire un email. Incollare l'email del punto 4
  6. Verrà aperto un browser che farà l'iscrizione. Quando arriva al punto in cui inserisce username e password risolvere il captcha che appare e premere iscriviti
  7. Tornare su https://10minutesemail.net/. Sarà arrivata una mail di conferma account. Aprirla e cliccare il bottone "Verify account". Nella pagina che si apre cliccare sul bottone
