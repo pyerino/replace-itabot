@@ -1,7 +1,7 @@
 import time
 import subprocess
-  
-  
-while(True):
+
+
+while True:
     subprocess.run(["python", "./generate.py"])
     time.sleep(650)
