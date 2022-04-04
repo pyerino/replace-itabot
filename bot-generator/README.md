@@ -1,4 +1,9 @@
 # Generatore di bot
+  
+**ATTENZIONE: Per usare il generatore serve avere il browser Chrome installato e il config.json già presente nella cartella del bot.**
+
+La cartella bot-generator con tutti i file va **dentro** la cartella del bot
+![enter image description here](https://imgur.com/aKmpOSi.png)
 
  1. Assicurarsi di essere sloggati da reddit
  2. Eseguire start.bat
