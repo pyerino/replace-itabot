@@ -486,7 +486,7 @@ class PlaceClient:
                 time_until_next_draw = next_pixel_placement_time - current_timestamp
 
                 if time_until_next_draw > 10000:
-                    logger.warning(f"Thread #{index} :: CANCELLED :: Rate-Limit Banned")
+                    logger.warning(f"Thread #{index} {name} :: CANCELLED :: Rate-Limit Banned")
                     repeat_forever = False
                     break
 
