@@ -5,6 +5,19 @@ Inoltre c'è un setup iniziale in cui crea il file di configurazione facendo del
 
 **Il bot inteso come programma si aggiorna riscaricando lo zip, verificate di avere l'ultima versione se avete problemi!**
 
+## Come usare il bot per la nuova parte
+
+* Leggi il resto del readme (poi ritorna qui se è la prima volta che lo apri perchè altrimenti ti vengo a cercare non con buone intenzioni)
+* Devi modificare con un editor di testo (blocco note va bene, ma non venite a chiedermi di un altro perche vi piace da morire quello che ha i colori notturni, un editor di testo è un editor di testo)
+  * Aprite il file `setup.py` alla riga 39 dovete modificare la URL, invece di finire come `art.png"` deve finire `art-2.png"`
+  * Aprite il file `main.py` alla riga 29 dovete modificare la URL, invece di finire come `coords.txt"` deve finire `coords-2.txt"`
+  * Se non vi funziona perchè non avete salvato queste modifiche non è colpa mia
+* Il bot va riavviato
+* No non dovete toccare altro
+
+* Come capire se copre la nuova zona? Dai pixel che vi scrive sulla finestra
+* Perchè devo modificarlo? L'immagine è troppo grande se copre tutto e quindi il programma va per i colli bolognesi finchè non schiatta senza usare la vespa
+
 ## FAQ
 
 ### Mi dice banned, moriremo tutti!
