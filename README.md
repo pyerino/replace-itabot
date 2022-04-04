@@ -5,6 +5,8 @@ Inoltre c'è un setup iniziale in cui crea il file di configurazione facendo del
 
 **Il bot inteso come programma si aggiorna riscaricando lo zip, verificate di avere l'ultima versione se avete problemi!**
 
+Per il Bot Generator fate riferimento al readme all'interno della cartella [bot-generator](https://github.com/pyerino/replace-itabot/tree/main/bot-generator).
+
 ## Come usare il bot per la nuova parte
 
 * Leggi il resto del readme (poi ritorna qui se è la prima volta che lo apri perchè altrimenti ti vengo a cercare non con buone intenzioni)
