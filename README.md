@@ -31,7 +31,31 @@ Il tuo account è limitato, devi attivarlo con un email per aspettare 5 minuti i
 ### Account multipli
 
 Se volete usare più di un account potete modificare il file config.json **dopo il primo avvio** e seguire le istruzioni che trovate su https://github.com/rdeepak2002/reddit-place-script-2022.  
-Cn gli account multipli è il caso di usare dei proxy se vi blocca, guardate il link.
+
+Il file config.json dovrebbe assumere circa questa forma:
+```json
+{
+	"thread_delay": 2,
+	"unverified_place_frequency": false,
+	"workers": {
+		"utente1": {
+			"password": "tuapw1",
+			"client_id": "id1",
+			"client_secret": "secret1",
+			"start_coords": [0, 0]
+		},
+		"utente2": {
+			"password": "tuapw2",
+			"client_id": "id2",
+			"client_secret": "secret2",
+			"start_coords": [0, 0]
+		}
+	}
+}
+```
+
+Utilizza https://jsonlint.com/ per controllare di aver chiuso le parentesi al posto giusto.
+Con gli account multipli è il caso di usare dei proxy se vi blocca, guardate il link.
 
 ### Come mette i pixel
 
