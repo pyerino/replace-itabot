@@ -1,6 +1,6 @@
 # Generatore di bot
 
- 1. Assicurarsi di essere sloggati da reddit
+ 1. Assicurarsi di essere sloggati da reddit e di avere Chrome installato
  2. Eseguire start.bat
  3. Andare su https://10minutesemail.net/
  4. Copiare l'indirizzo email che spunta sulla pagina. NON CHIUDERE LA PAGINA!
@@ -10,3 +10,5 @@
  8. La configurazione del bot verrà automaticamente aggiornata dal generatore. Se volete usare subito il nuovo utente riavviate il bot.
  9. Tra 10 minuti vi chiederà un'altra email. Andate su https://10minutesemail.net/ e cliccate sul cestino per ottenere una nuova email
  10. Ripetete dal punto 4 a piacere 
+
+Richiede un ambiente grafico su Linux.
