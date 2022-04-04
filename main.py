@@ -455,11 +455,10 @@ class PlaceClient:
 
             # note: Reddit limits us to place 1 pixel every 5 minutes, so I am setting it to
             # 5 minutes and 30 seconds per pixel
-            pixel_place_frequency = 330 + random.randint(0, 180)
             if self.unverified_place_frequency:
                 pixel_place_frequency = 1230
             else:
-                pixel_place_frequency = 330
+                pixel_place_frequency = 330 + random.randint(0, 180)
 
             next_pixel_placement_time = math.floor(time.time()) + pixel_place_frequency
 
