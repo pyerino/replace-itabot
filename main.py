@@ -179,7 +179,11 @@ class PlaceClient:
         }
 
         response = requests.request(
-            "POST", url, headers=headers, data=payload, proxies=self.GetRandomProxy(self)
+            "POST",
+            url,
+            headers=headers,
+            data=payload,
+            proxies=self.GetRandomProxy(self),
         )
         logger.debug("Thread #{} : Received response: {}", thread_index, response.text)
 
