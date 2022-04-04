@@ -239,7 +239,7 @@ class PlaceClient:
                 }
             )
         )
-        while True:            
+        while True:
             try:
                 msg = ws.recv()
             except WebSocketConnectionClosedException as e:
