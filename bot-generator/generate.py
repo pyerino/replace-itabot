@@ -49,19 +49,12 @@ finalName = name + str(randomNumber)
 # REDDIT ACCOUNT CREATION
 driver.get("https://www.reddit.com/register/")
 
-driver.find_element_by_id("regEmail").send_keys(mail_address)
-driver.find_element_by_xpath("//button[contains(text(),'Continua')]").click()
+driver.find_element_by_id('regEmail').send_keys(mail_address)
+driver.find_element_by_xpath ('//button[@data-step="email"]').click()
 time.sleep(1)
-driver.find_element_by_id("regUsername").send_keys(finalName)
-driver.find_element_by_id("regPassword").send_keys(password)
-WebDriverWait(driver, 650).until(
-    EC.visibility_of_element_located(
-        (
-            By.XPATH,
-            "//h1[contains(text(),'Trova comunità in base agli argomenti che ti interessano.')]",
-        )
-    )
-)
+driver.find_element_by_id('regUsername').send_keys(finalName)
+driver.find_element_by_id('regPassword').send_keys(password)
+WebDriverWait(driver, 650).until(EC.visibility_of_element_located((By.XPATH, '//button[@data-step="<Macro \'step\'>"]')))
 
 driver.get("https://www.reddit.com/prefs/apps")
 time.sleep(1)
